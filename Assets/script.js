@@ -29,6 +29,7 @@ var question4 = {
 };
 var allQuestions = [question1, question2, question3, question4];
 
+
 //start button functionality
 //add in quiz questions layout to DOM with buttons and one p or div
 //add in functionality for questions and answers to change with carosuel
