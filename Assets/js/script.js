@@ -131,8 +131,9 @@ function setTimerLocalStorage (){
 
 }
 function finishHighscores() {
-window.location.href = URL("./high-scores")
+    window.location.href = "./high-scores"
 }
+
 startBtn.addEventListener("click",startGame);
 optionContainer.addEventListener("click",questionEvalution);
 
