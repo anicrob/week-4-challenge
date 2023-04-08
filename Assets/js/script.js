@@ -50,12 +50,7 @@ var feedbackMessage = document.querySelector(".feedback");
 var questionPage = [questionArea, option1, option2, option3, option4, questionText, optionContainer];
 var timeLeft = 0;
 var index = 0;
-var currentQuestion;
-var currentOption1;
-var currentOption2;
-var currentOption3;
-var currentOption4;
-var currentOption5;
+
 
 //working
 function startGame(event) {
@@ -98,11 +93,11 @@ function changeQuestion (direction){
             finishHighscores();
         } else {
             index = index + direction;
-            currentQuestion = allQuestions[index].text;
-            currentOption1 = allQuestions[index].option1;
-            currentOption2 = allQuestions[index].option2;
-            currentOption3 = allQuestions[index].option3;
-            currentOption4 = allQuestions[index].option4;
+            questionText.textContent = allQuestions[index].text;
+            option1.textContent= allQuestions[index].option1;
+            option2.textContent = allQuestions[index].option2;
+            option3.textContent = allQuestions[index].option3;
+            option4.textContent = allQuestions[index].option4;
         }
     }
 function questionEvalution(event) {
