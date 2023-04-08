@@ -1,33 +1,142 @@
 //declare any variables
 var question1 = {
-    description: "question name",
-    option1: "option",
-    option2: "option",
-    option3: "option",
-    option4: "option"
+    text: "What animals sleep with only one side of their brains?",
+    option1: "cats and dogs",
+    option2: "crabs and lobsters",
+    option3: "dolphins and whales - correct answer",
+    option4: "mosquitos and bees"
 };
 var question2 = {
-    description: "question name",
-    option1: "option",
-    option2: "option",
-    option3: "option",
-    option4: "option"
+    text: "Who named the Pacific Ocean?",
+    option1: "Ferdinand Magellan - correct",
+    option2: "Christopher Columnus",
+    option3: "Vikings",
+    option4: "Amerigo Vespucci"
 };
 var question3 = {
-    description: "question name",
-    option1: "option",
-    option2: "option",
-    option3: "option",
-    option4: "option"
+    text: "What is the rarest M&M color?",
+    option1: "green",
+    option2: "Brown - correct",
+    option3: "red",
+    option4: "blue"
 };
 var question4 = {
-    description: "question name",
-    option1: "option",
-    option2: "option",
-    option3: "option",
-    option4: "option"
+    text: "The unicorn is the national animal of which country?",
+    option1: "Brazil",
+    option2: "Switzerland",
+    option3: "Iceland",
+    option4: "Scotland - correct"
 };
-var allQuestions = [question1, question2, question3, question4];
+var question5 = {
+    text: "How long is New Zealand’s Ninety Mile Beach?",
+    option1: "no one knows",
+    option2: "55 miles - correct",
+    option3: "20 miles",
+    option4: "90 miles"
+};
+var allQuestions = [question1, question2, question3, question4, question5];
+var startBtn = document.querySelector(".startBtn");
+var welcomeMessage = document.querySelector(".welcome")
+var welcomePage = [startBtn, welcomeMessage];
+var questionArea = document.querySelector(".qaf-area")
+var timer = document.querySelector(".time");
+var option1 = document.querySelector("#op1");
+var option2 = document.querySelector("#op2");
+var option3 = document.querySelector("#op3");
+var option4 = document.querySelector("#op4");
+var questionText = document.querySelector(".question-text");
+var optionContainer = document.querySelector(".question-options");
+var feedbackMessage = document.querySelector(".feedback");
+var questionPage = [questionArea, option1, option2, option3, option4, questionText, optionContainer];
+var timeLeft = 0;
+var index = 0;
+var currentQuestion;
+var currentOption1;
+var currentOption2;
+var currentOption3;
+var currentOption4;
+var currentOption5;
+
+//working
+function startGame(event) {
+    for (var i=0; i<welcomePage.length; i++){
+        welcomePage[i].classList.add("hidden");
+        welcomePage[i].classList.remove("visible", "welcome");
+
+    }
+    for (var i=0; i<questionPage.length;i++){
+        questionPage[i].classList.add("visible");
+        questionPage[i].classList.remove("hidden");
+    }
+    startTimer();
+    questionText.textContent= allQuestions[0].text;
+    option1.textContent=allQuestions[0].option1;
+    option2.textContent=allQuestions[0].option2;
+    option3.textContent=allQuestions[0].option3;
+    option4.textContent=allQuestions[0].option4;
+}
+//working
+function startTimer(){
+    timeLeft = 61;
+    var timeInterval = setInterval(function () {
+        timeLeft--;
+        timer.textContent = timeLeft;
+        if(timeLeft === 0){
+            clearInterval(timeInterval);
+            setTimerLocalStorage()
+            finishHighscores();
+        }
+      }, 1000)
+}
+function changeQuestion (direction){
+        if
+        (
+            timeLeft < 0 ||
+            index >= allQuestions.length
+         )
+         {
+            finishHighscores();
+        } else {
+            index = index + direction;
+            currentQuestion = allQuestions[index].text;
+            currentOption1 = allQuestions[index].option1;
+            currentOption2 = allQuestions[index].option2;
+            currentOption3 = allQuestions[index].option3;
+            currentOption4 = allQuestions[index].option4;
+        }
+    }
+function questionEvalution(event) {
+    var element = event.target;
+    if (element.matches("button")){
+        var validate = element.getAttribute("data-validate");
+    }
+    console.log(validate);
+    if(validate === "wrong"){
+        timeLeft-=5;
+        timer.textContent = timeLeft;
+        setTimeout(function(){
+            feedbackMessage.setAttribute("class", "visible");
+            feedbackMessage.textContent = "Wrong!"},
+            30);
+        changeQuestion(1);
+    } else{
+        setTimeout(function(){
+            feedbackMessage.setAttribute("class", "visible");
+            feedbackMessage.textContent = "Correct!"},
+            30);
+        changeQuestion(1);
+    }
+}
+function setTimerLocalStorage (){
+
+}
+function finishHighscores() {
+window.location.href = URL("./high-scores")
+}
+startBtn.addEventListener("click",startGame);
+optionContainer.addEventListener("click",questionEvalution);
+
+
 
 
 //start button functionality
@@ -71,3 +180,8 @@ var allQuestions = [question1, question2, question3, question4];
 //high score separate page is preferred/easier
 
 
+// questionText.textContent= allQuestions[i].text;
+//             option1.textContent=allQuestions[i].option1;
+//             option2.textContent=allQuestions[i].option2;
+//             option3.textContent=allQuestions[i].option3;
+//             option4.textContent=allQuestions[i].option4;

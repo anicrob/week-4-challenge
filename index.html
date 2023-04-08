@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JavaScript Quiz</title>
+    <title>Trivia Game</title>
     <link rel= "stylesheet" href="./Assets/css/reset.css" type="text/css">
     <link rel= "stylesheet" href="./Assets/css/style.css" type="text/css">
   </head>
@@ -12,30 +12,34 @@
     <!-- header items -->
     <header>
       <!-- Navigation to the high scores page - is just a link -->
-      <nav>High Scores</nav>
+      <nav><a href="high-scores.html">High Scores</a></nav>
       <!-- timer fixed to the top right-hand corner -->
-      <timer class="timer"></timer>
+      <timer class="timer">Time: <span class="time">0</span></timer>
     </header>
     <!-- divider for the game itself -->
     <div class="game">
       <!-- welcome div which will be hidden after clicking on start -->
-      <div class="welcome">
-        Welcome to the game! Click on the start button to start.
+      <div class="welcome visible">
+        Welcome to the trivia game! Click on the start button to start.
         <!-- start button -->
-        <div class="startBtn">Start</div>
+        <button class="startBtn visible">Start</button>
       </div>
-      <!-- question text - the actual question itself will live here -->
-      <div class="question-text"></div>
-      <!-- question options go here with each option being a button -->
-      <div class="question-options">
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
+      <!-- div for all question, answer, and feedback items -->
+      <div class="qaf-area hidden">
+         <!-- question text - the actual question itself will live here -->
+        <div class="question-text hidden">test question</div>
+        <!-- question options go here with each option being a button -->
+        <div class="question-options hidden">
+            <button data-validate = "wrong" id="op1" class="option hidden">test</button>
+            <button data-validate = "right" id="op2" class="option hidden">test</button>
+            <button data-validate = "wrong" id="op3" class="option hidden">test</button>
+            <button data-validate = "wrong" id="op4" class="option hidden">test</button>
+        </div>
+        <!-- this is the feedback letting the user know if their answer was right or wrong -->
+        <div class="feedback hidden">test feedback</div>
       </div>
-      <!-- this is the feedback letting the user know if their answer was right or wrong -->
-      <div class="feedback"></div>
+     
     </div>
-    <script src="./Assets/script.js"></script>
+    <script src="./Assets/js/script.js"></script>
   </body>
 </html>

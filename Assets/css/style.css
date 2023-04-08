@@ -1,0 +1,70 @@
+:root{
+    font-family: sans-serif;
+    font-size: 12pt;
+    background-color: white;
+}
+.hidden{
+    display: none;
+}
+.visible {
+    display: visible;
+}
+button {
+    color:white;
+    background-color: purple;
+}
+header{
+    display:flex;
+    justify-content: space-between;
+    height: 100px;
+    font-size:1.5rem;
+}
+header nav a {
+    text-decoration: none;
+    color: purple;
+}
+.timer {
+    text-align: right;
+    color: purple;
+}
+.welcome {
+    font-size: 2rem;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    text-align: center;
+}
+.startBtn{
+    margin-bottom: 40px;
+    display:relative;
+    margin-top: 75px;
+    width:fit-content;
+    font-size:2rem;
+}
+.qaf-area{
+   margin: 0px 400px;
+}
+.question-options{
+    display:relative;
+    margin-top:30px;
+}
+.question-text{
+    font-size:1.25rem;
+    font-weight:bold;
+    display:relative;
+}
+.option {
+    display:block;
+    width:200px;
+    margin: 10px;
+    height: 30px;
+}
+.feedback{
+    display:relative;
+    left:30px;
+    margin-top:30px;
+    color:gray;
+    border-top: 5px solid gray;
+    font-style:italic;
+    line-height: 30px;
+}

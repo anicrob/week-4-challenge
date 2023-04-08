@@ -9,22 +9,28 @@
     <link rel="stylesheet" type="text/css" href="./Assets/css/style.css">
 </head>
 <body>
+    <!-- divider for the finish quiz page -->
     <div class="finish-quiz-page">
        <h1>All done!</h1> 
+       <!-- this message includes the final score that's populated by the JS. -->
         <div class="final-score-message">
             Your final score is <span id="final-score"></span>.
         </div>
+        <!-- the finish quiz page also includes a form to allow users to add their initials and submit. -->
         <form class="submit-final-score">
             Enter initials:
             <input class="initials"></input>
             <button class="submitBtn">Submit</button>
         </form>
     </div>
+    <!-- once the users submits the view high scores page will be visible -->
     <div class="view-high-scores">
         <h1>Highscores</h1>
+        <!-- an unordered list is used to display a list of high scores populated by JS -->
         <ul class="list-of-highscores">
             <li class="list-item-hs">test</li>
         </ul>
+        <!-- buttons to go back to home page or clear highscores -->
         <button class="back-to-home">Go Back</button>
         <button class="clear-highscores">Clear Highscores</button>
     </div>
