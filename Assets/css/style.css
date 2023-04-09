@@ -1,32 +1,40 @@
+/* This is the root formatting */
 :root{
-    font-family: sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 12pt;
     background-color: white;
 }
+/* this is how I hide or display something in the HTML powered/switched by JS */
 .hidden{
     display: none;
 }
 .visible {
     display: visible;
 }
+/* general button formatting */
 button {
     color:white;
     background-color: purple;
+    text-align: left;
 }
+/* header formatting to keep all items inside spaced correctly */
 header{
     display:flex;
     justify-content: space-between;
     height: 100px;
     font-size:1.5rem;
 }
+/* removed anchor tag decoration and made it purple */
 header nav a {
     text-decoration: none;
     color: purple;
 }
+/* timer formatting */
 .timer {
     text-align: right;
     color: purple;
 }
+/* how the welcome div is formatted - used flex to keep child items centered */
 .welcome {
     font-size: 2rem;
     display:flex;
@@ -34,6 +42,7 @@ header nav a {
     align-items: center;
     text-align: center;
 }
+/* start button formatting */
 .startBtn{
     margin-bottom: 40px;
     display:relative;
@@ -41,24 +50,29 @@ header nav a {
     width:fit-content;
     font-size:2rem;
 }
+/* used this to keep it all centered to use display relative for inside items */
 .qaf-area{
    margin: 0px 400px;
 }
+/* for the options ul formatting */
 .question-options{
     display:relative;
     margin-top:30px;
 }
+/* the question formatting */
 .question-text{
     font-size:1.25rem;
     font-weight:bold;
     display:relative;
 }
+/* formatting for the options themselves - the buttons */
 .option {
     display:block;
     width:200px;
     margin: 10px;
     height: 30px;
 }
+/* the feedback formatting */
 .feedback{
     display:relative;
     left:30px;

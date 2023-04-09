@@ -1,44 +1,35 @@
 //declare any variables
-var question1 = {
-    text: "What animals sleep with only one side of their brains?",
-    option1: "cats and dogs",
-    option2: "crabs and lobsters",
-    option3: "dolphins and whales - correct answer",
-    option4: "mosquitos and bees"
-};
-var question2 = {
-    text: "Who named the Pacific Ocean?",
-    option1: "Ferdinand Magellan - correct",
-    option2: "Christopher Columnus",
-    option3: "Vikings",
-    option4: "Amerigo Vespucci"
-};
-var question3 = {
-    text: "What is the rarest M&M color?",
-    option1: "green",
-    option2: "Brown - correct",
-    option3: "red",
-    option4: "blue"
-};
-var question4 = {
-    text: "The unicorn is the national animal of which country?",
-    option1: "Brazil",
-    option2: "Switzerland",
-    option3: "Iceland",
-    option4: "Scotland - correct"
-};
-var question5 = {
-    text: "How long is New Zealand’s Ninety Mile Beach?",
-    option1: "no one knows",
-    option2: "55 miles - correct",
-    option3: "20 miles",
-    option4: "90 miles"
-};
-var allQuestions = [question1, question2, question3, question4, question5];
+//questions variable, with title, options, and correctAnswer properties in an array
+var questions = [{
+    title: "What animals sleep with only one side of their brains?",
+    options: ["1. cats and dogs", "2. crabs and lobsters", "3. dolphins and whales","4. mosquitos and bees"],
+    correctAnswer: "3. dolphins and whales"
+},
+{
+    title: "Who named the Pacific Ocean?",
+    options: ["1. Ferdinand Magellan", "2. Christopher Columbus", "3. Vikings", "4. Amerigo Vespucci"],
+    correctAnswer: "1. Ferdinand Magellan"
+},
+{
+    title: "What is the rarest M&M color?",
+    options: ["1. green", "2. brown", "3. red", "4. blue"],
+    correctAnswer: "2. brown"
+},
+ {
+    title: "The unicorn is the national animal of which country?",
+    options: ["1. Brazil","2. Switzerland","3. Iceland","4. Scotland"],
+    correctAnswer: "4. Scotland"
+},
+{
+    title: "How long is New Zealand’s Ninety Mile Beach?",
+    options: ["1. no one knows","2. 55 miles","3. 20 miles", "4. 90 miles"],
+    correctAnswer: "2. 55 miles"
+}];
+//document.querySelectors(s)
 var startBtn = document.querySelector(".startBtn");
-var welcomeMessage = document.querySelector(".welcome")
+var welcomeMessage = document.querySelector(".welcome");
 var welcomePage = [startBtn, welcomeMessage];
-var questionArea = document.querySelector(".qaf-area")
+var questionArea = document.querySelector(".qaf-area");
 var timer = document.querySelector(".time");
 var option1 = document.querySelector("#op1");
 var option2 = document.querySelector("#op2");
@@ -48,92 +39,119 @@ var questionText = document.querySelector(".question-text");
 var optionContainer = document.querySelector(".question-options");
 var feedbackMessage = document.querySelector(".feedback");
 var questionPage = [questionArea, option1, option2, option3, option4, questionText, optionContainer];
+//other variables
 var timeLeft = 0;
 var index = 0;
 
+//define a few functions that will be used later
+//this is the timer function
+function startTimer(){
+    //start with 61 seconds
+    timeLeft = 61;
+    //use setInterval to decreate time
+    var timeInterval = setInterval(function () {
+        timeLeft--;
+        //post decreased time to timer in DOM
+        timer.textContent = timeLeft;
+        //if we run out of time - get to zero, clear the clock, and finish quiz
+        if(timeLeft === 0){
+            clearInterval(timeInterval);
+            finishedQuiz();
+        }
+        //1,000 is milliseconds, so 1,000 milliseconds means we are decreasing by seconds
+      }, 1000)
+}
+//function to go to the next question with an input of direction
+function changeQuestion (direction){
+    //first ensure that there is time and questions left
+    if
+    (
+        timeLeft < 0 ||
+        index >= 4
+     )
+     //if no time or questions are left end the quiz
+     {
+        finishedQuiz();
+     //else go to the next question/option based on the calculated index (current index + input of direction)
+    } else {
+        index = index + direction;
+        questionText.textContent = questions[index].title;
+        option1.textContent= questions[index].options[0];
+        option2.textContent = questions[index].options[1];
+        option3.textContent = questions[index].options[2];
+        option4.textContent = questions[index].options[3];
+    }
+}
+//see if there's a way to delay this a little bit like 2 seconds
+//this function ends the quiz
+function finishedQuiz() {
+    //it first adds the time left to local storage and goes to the high scores page
+    localStorage.setItem("time-left", timeLeft);
+    window.location.href = "./high-scores.html"
+}
+//functions triggered by buttons
 
-//working
+//start game when start button is clicked on
 function startGame(event) {
+    //this makes the welcome page hidden
     for (var i=0; i<welcomePage.length; i++){
         welcomePage[i].classList.add("hidden");
         welcomePage[i].classList.remove("visible", "welcome");
 
     }
+    //this makes the questions page visible
     for (var i=0; i<questionPage.length;i++){
         questionPage[i].classList.add("visible");
         questionPage[i].classList.remove("hidden");
     }
+    //start timer function is triggered
     startTimer();
-    questionText.textContent= allQuestions[0].text;
-    option1.textContent=allQuestions[0].option1;
-    option2.textContent=allQuestions[0].option2;
-    option3.textContent=allQuestions[0].option3;
-    option4.textContent=allQuestions[0].option4;
+    //we want to start off with question 1
+    questionText.textContent= questions[0].title;
+    option1.textContent=questions[0].options[0];
+    option2.textContent=questions[0].options[1];
+    option3.textContent=questions[0].options[2];
+    option4.textContent=questions[0].options[3];
 }
-//working
-function startTimer(){
-    timeLeft = 61;
-    var timeInterval = setInterval(function () {
-        timeLeft--;
-        timer.textContent = timeLeft;
-        if(timeLeft === 0){
-            clearInterval(timeInterval);
-            setTimerLocalStorage()
-            finishHighscores();
-        }
-      }, 1000)
-}
-function changeQuestion (direction){
-        if
-        (
-            timeLeft < 0 ||
-            index >= allQuestions.length
-         )
-         {
-            finishHighscores();
-        } else {
-            index = index + direction;
-            questionText.textContent = allQuestions[index].text;
-            option1.textContent= allQuestions[index].option1;
-            option2.textContent = allQuestions[index].option2;
-            option3.textContent = allQuestions[index].option3;
-            option4.textContent = allQuestions[index].option4;
-        }
-    }
+
+//once the first question has been answered this is first triggered 
 function questionEvalution(event) {
+    //it sees which option is clicked on within the ul or all options
     var element = event.target;
-    if (element.matches("button")){
-        var validate = element.getAttribute("data-validate");
-    }
-    console.log(validate);
-    if(validate === "wrong"){
-        timeLeft-=5;
+    //if the element clicked on is a button and its value does not match the question's correct answer, 
+    if (element.matches("button") && element.textContent !== questions[index].correctAnswer){
+        console.log(element.textContent, questions[index].correctAnswer);
+        //subtract 5 seconds
+        timeLeft -= 5;
         timer.textContent = timeLeft;
+        //see what 30 means and how to get it to timeout properly
+        //let the user know their answer was wrong
         setTimeout(function(){
             feedbackMessage.setAttribute("class", "visible");
             feedbackMessage.textContent = "Wrong!"},
             30);
+        //go to next question
         changeQuestion(1);
+    //else means option chosen was correct
     } else{
+        console.log(element.textContent, questions[index].correctAnswer);
+        //say that it was correct
         setTimeout(function(){
             feedbackMessage.setAttribute("class", "visible");
             feedbackMessage.textContent = "Correct!"},
             30);
+        //go to next question
         changeQuestion(1);
     }
 }
-function setTimerLocalStorage (){
-
-}
-function finishHighscores() {
-    window.location.href = "./high-scores"
-}
-
+//start game when start button is clicked on 
 startBtn.addEventListener("click",startGame);
+//evaluate if the question was right or wrong when an option button is clicked on
 optionContainer.addEventListener("click",questionEvalution);
 
 
 
+//planning:
 
 //start button functionality
 //add in quiz questions layout to DOM with buttons and one p or div
@@ -174,10 +192,3 @@ optionContainer.addEventListener("click",questionEvalution);
 //increment index variable - out of time or out of questions
 //have it all in HTML but use JS to make it hidden or visible by switching the classes
 //high score separate page is preferred/easier
-
-
-// questionText.textContent= allQuestions[i].text;
-//             option1.textContent=allQuestions[i].option1;
-//             option2.textContent=allQuestions[i].option2;
-//             option3.textContent=allQuestions[i].option3;
-//             option4.textContent=allQuestions[i].option4;
