@@ -11,13 +11,13 @@
 <body>
     <!-- divider for the finish quiz page -->
     <header>
-        <!-- Navigation to the high scores page - is just a link -->
+        <!-- Navigation to the home page - is just a link -->
         <nav><a href="index.html" class="visible">Home</a></nav>
         <!-- timer fixed to the top right-hand corner -->
         <timer class="timer visible">Time: <span class="time visible"></span></timer>
     </header>
     <div class="finish-quiz-page visible">
-       <h1>All done!</h1> 
+       <h1 id="doneMessage">All done!</h1> 
        <!-- this message includes the final score that's populated by the JS. -->
         <div class="final-score-message visible">
             Your final score is <span class = "visible" id="final-score"></span>.
@@ -33,13 +33,11 @@
     <div class="hidden view-high-scores">
         <h1>Highscores</h1>
         <!-- an unordered list is used to display a list of high scores populated by JS -->
-        <ul class="list-of-highscores hidden">
-            <!-- <li class="list-item-hs">test</li> -->
-        </ul>
+        <ul class="list-of-highscores hidden"></ul>
         <!-- buttons to go back to home page or clear highscores -->
         <button class="hidden back-to-home">Go Back</button>
         <button class="hidden clear-highscores">Clear Highscores</button>
     </div>
-   
+   <script src="./Assets/js/high-scores.js"></script>
 </body>
 </html>

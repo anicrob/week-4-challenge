@@ -29,11 +29,31 @@ header nav a, .timer, .time {
     text-decoration: none;
     color: purple;
 }
+/* formatted the entire finish quiz page */
 .finish-quiz-page{
     margin:0px 400px;
     line-height: 70px;
 }
+/* formatting for the header only */
 .finish-quiz-page h1{
     font-size:2rem;
     font-weight:bold;
+}
+/* formatting for the view high scores page */
+.view-high-scores{
+    margin:0px 400px;
+}
+/* formatting for the header on the view high scores page */
+.view-high-scores h1{
+    font-size:2rem;
+    font-weight:bold;
+    margin-bottom: 30px;
+}
+/* formatting for the list items (high scores) that the JS creates */
+.high-score-li{
+    background-color: lavender;
+    margin-bottom: 15px;
+    height: 30px;
+    display:flex;
+    align-items:center;
 }
