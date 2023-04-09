@@ -27,7 +27,7 @@ function goToHighScores(event){
     //prevent default as the form will clear and render undefined without this
     event.preventDefault();
     //set the initials variable to what was inputted into the input box
-    initials = inputTextArea.value
+    initials = inputTextArea.value.trim();
     //console.log to help debug/see in console what the initials are being rendered as
     console.log(initials);
         //if the initial input is not a number and is 3 characters or less
