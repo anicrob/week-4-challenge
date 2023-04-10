@@ -129,7 +129,7 @@ function questionEvalution(event) {
         setTimeout(function(){
             feedbackMessage.setAttribute("class", "visible");
             feedbackMessage.textContent = "Wrong!"},
-            30);
+            3);
         //go to next question
         changeQuestion(1);
     //else means option chosen was correct
@@ -139,7 +139,7 @@ function questionEvalution(event) {
         setTimeout(function(){
             feedbackMessage.setAttribute("class", "visible");
             feedbackMessage.textContent = "Correct!"},
-            30);
+            3);
         //go to next question
         changeQuestion(1);
     }
