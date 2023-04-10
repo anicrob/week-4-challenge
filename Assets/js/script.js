@@ -124,11 +124,11 @@ function questionEvalution(event) {
         //subtract 5 seconds
         timeLeft -= 5;
         timer.textContent = timeLeft;
+        //show feedback
         feedbackMessage.classList.add("visible");
         feedbackMessage.classList.remove("hidden");
         feedbackMessage.textContent = "Wrong!"
-        //see what 30 means and how to get it to timeout properly
-        //let the user know their answer was wrong
+        //hide feedback after 2 seconds
         setTimeout(function(){
             feedbackMessage.classList.add("hidden");
             feedbackMessage.classList.remove("visible");  
@@ -139,10 +139,11 @@ function questionEvalution(event) {
     //else means option chosen was correct
     } else{
         console.log(element.textContent, questions[index].correctAnswer);
+        //show feedback 
         feedbackMessage.classList.add("visible");
         feedbackMessage.classList.remove("hidden");
         feedbackMessage.textContent = "Correct!"
-        //say that it was correct
+        //hide feedback after 2 seconds
         setTimeout(function(){
             feedbackMessage.classList.add("hidden");
             feedbackMessage.classList.remove("visible");        
