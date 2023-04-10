@@ -127,9 +127,10 @@ function questionEvalution(event) {
         //see what 30 means and how to get it to timeout properly
         //let the user know their answer was wrong
         setTimeout(function(){
-            feedbackMessage.setAttribute("class", "visible");
+            feedbackMessage.classList.add("visible");
+            feedbackMessage.classList.remove("hidden");
             feedbackMessage.textContent = "Wrong!"},
-            3);
+            3000);
         //go to next question
         changeQuestion(1);
     //else means option chosen was correct
@@ -137,9 +138,10 @@ function questionEvalution(event) {
         console.log(element.textContent, questions[index].correctAnswer);
         //say that it was correct
         setTimeout(function(){
-            feedbackMessage.setAttribute("class", "visible");
+            feedbackMessage.classList.add("visible");
+            feedbackMessage.classList.remove("hidden");
             feedbackMessage.textContent = "Correct!"},
-            3);
+            3000);
         //go to next question
         changeQuestion(1);
     }
