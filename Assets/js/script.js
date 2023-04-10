@@ -56,7 +56,7 @@ function startTimer(){
         //if we run out of time - get to zero, clear the clock, and finish quiz
         if(timeLeft === 0){
             clearInterval(timeInterval);
-            finishedQuiz();
+            setTimeout(finishedQuiz(), 3000);
         }
         //1,000 is milliseconds, so 1,000 milliseconds means we are decreasing by seconds
       }, 1000)
@@ -71,7 +71,7 @@ function changeQuestion (direction){
      )
      //if no time or questions are left end the quiz
      {
-        finishedQuiz();
+        setTimeout(finishedQuiz(), 3000);
      //else go to the next question/option based on the calculated index (current index + input of direction)
     } else {
         index = index + direction;
@@ -86,7 +86,8 @@ function changeQuestion (direction){
 //this function ends the quiz
 function finishedQuiz() {
     //it first adds the time left to local storage and goes to the high scores page
-    localStorage.setItem("time-left", timeLeft);
+    localStorage.setItem("timeLeftString", JSON.stringify(timeLeft));
+    localStorage.setItem("currentTimeLeft", timeLeft);
     window.location.href = "./high-scores.html"
 }
 //functions triggered by buttons

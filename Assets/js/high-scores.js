@@ -1,8 +1,8 @@
 //variables declared
+//Query selectors
 var navBar = document.querySelector("nav");
 var timer = document.querySelector(".timer");
 var timeDisplayed = document.querySelector(".time")
-//Query selectors
 var doneMessage = document.querySelector("#doneMessage");
 var finalScoreMessage = document.querySelector(".final-score-message")
 var finalScoreDisplayed = document.querySelector("#final-score");
@@ -20,8 +20,11 @@ var clearHsBtn = document.querySelector(".clear-highscores");
 var highScoresPage = [viewHighscores, listHighScores, goBackBtn, clearHsBtn];
 //undefined initials variable
 var initials;
-//getting the time-left local storage item and assigning it to the timeLeft variable
-var timeLeft= localStorage.getItem("time-left");
+var timeLeft = localStorage.getItem("currentTimeLeft")
+var finalScore = {
+    initials: '',
+    score: ''
+}
 
 function goToHighScores(event){
     //prevent default as the form will clear and render undefined without this
@@ -43,10 +46,18 @@ function goToHighScores(event){
                 highScoresPage[i].classList.add("visible");
                 highScoresPage[i].classList.remove("hidden");
         } 
+        for (var i=0; i<finalScore.initials.length;i++){
+        finalScore.initials[i]= JSON.parse(localStorage.getItem("initials"))
+        }
+        for (var i=0; i<finalScore.score.length;i++){
+        finalScore.score[i]= JSON.parse(localStorage.getItem("time-left"))
+        }
+        for (var i=0; i<finalScore.length;i++)
             //creates the li element
             var newListItem = document.createElement("li");
+            console.log(newListItem);
             //adds the high score text to the li
-            newListItem.textContent = initials + " " + "-" + " " + timeLeft;
+            newListItem.textContent = finalScore.length + ". " + finalScore.initials[i] + " " + "-" + " " + finalScore.score[i];
             //give the newly created li a class of high-score-li so it can be styled in the CSS
             newListItem.setAttribute("class", "high-score-li")
             //add new element to the DOM
