@@ -43,6 +43,7 @@ var questionPage = [questionArea, option1, option2, option3, option4, questionTe
 var timeLeft = 0;
 var index = 0;
 
+var highScores = localStorage.getItem("high-scores") || [];
 //define a few functions that will be used later
 //this is the timer function
 function startTimer(){
@@ -86,8 +87,7 @@ function changeQuestion (direction){
 //this function ends the quiz
 function finishedQuiz() {
     //it first adds the time left to local storage and goes to the high scores page
-    localStorage.setItem("timeLeftString", JSON.stringify(timeLeft));
-    localStorage.setItem("currentTimeLeft", timeLeft);
+    localStorage.setItem("time-left", JSON.stringify(timeLeft));
     window.location.href = "./high-scores.html"
 }
 //functions triggered by buttons

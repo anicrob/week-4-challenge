@@ -19,54 +19,55 @@ var clearHsBtn = document.querySelector(".clear-highscores");
 //all high score page elements in an array
 var highScoresPage = [viewHighscores, listHighScores, goBackBtn, clearHsBtn];
 //undefined initials variable
-var initials;
-var timeLeft = localStorage.getItem("currentTimeLeft")
-var finalScore = {
-    initials: '',
-    score: ''
-}
+var timeLeft = localStorage.getItem("time-left")
 
+
+function saveHighScore () {
+   
+    }
+//length + 1
+//go to high scores page
+//loop through what is in highscores array
+
+//display high scores only
 function goToHighScores(event){
-    //prevent default as the form will clear and render undefined without this
     event.preventDefault();
-    //set the initials variable to what was inputted into the input box
-    initials = inputTextArea.value.trim();
-    //console.log to help debug/see in console what the initials are being rendered as
-    console.log(initials);
-        //if the initial input is not a number and is 3 characters or less
-        if (isNaN(initials) && initials.length <= 3){
-            //this makes the finished game page hidden
-            for (var i=0; i<finishedGamePage.length; i++){
-                finishedGamePage[i].classList.add("hidden");
-                finishedGamePage[i].classList.remove("visible", "timer", "time", "final-score-message", "submit-final-score", "initials", "submitBtn");
-        
-            }
-            //this makes the high scores page visible
-            for (var i=0; i<highScoresPage.length; i++){
-                highScoresPage[i].classList.add("visible");
-                highScoresPage[i].classList.remove("hidden");
-        } 
-        for (var i=0; i<finalScore.initials.length;i++){
-        finalScore.initials[i]= JSON.parse(localStorage.getItem("initials"))
+    var initials = inputTextArea.value.trim();
+    if(initials !== ''){
+        //template
+        var finalScore = {
+            initials: initials,
+            score: timeLeft
         }
-        for (var i=0; i<finalScore.score.length;i++){
-        finalScore.score[i]= JSON.parse(localStorage.getItem("time-left"))
-        }
-        for (var i=0; i<finalScore.length;i++)
+        //already an array
+        var highscores = JSON.parse(localStorage.getItem('highscores')) || [];
+        //pushing the template into existing array (highscores) 
+        highscores.push(finalScore);
+        localStorage.setItem("highscores", JSON.stringify(highscores))
+        console.log(highscores);
+
+    for (var i=0; i<finishedGamePage.length; i++){
+        finishedGamePage[i].classList.add("hidden");
+        finishedGamePage[i].classList.remove("visible", "timer", "time", "final-score-message", "submit-final-score", "initials", "submitBtn");
+
+    }
+    //this makes the high scores page visible
+    for (var i=0; i<highScoresPage.length; i++){
+        highScoresPage[i].classList.add("visible");
+        highScoresPage[i].classList.remove("hidden");
+}         
+        for (var i=0; i<highscores[i].length;i++)
             //creates the li element
             var newListItem = document.createElement("li");
             console.log(newListItem);
             //adds the high score text to the li
-            newListItem.textContent = finalScore.length + ". " + finalScore.initials[i] + " " + "-" + " " + finalScore.score[i];
+            newListItem.textContent = highscores.initials.length + ". " + highscores.initials[i] + " " + "-" + " " + highscores.score[i];
             //give the newly created li a class of high-score-li so it can be styled in the CSS
             newListItem.setAttribute("class", "high-score-li")
             //add new element to the DOM
             listHighScores.appendChild(newListItem);
-    } //if the initial input is a number or is more than 3 characters, display error
-        else {
-            alert("initials must be less than 3 characters and cannot be numbers")
-        }
-    }
+    } 
+}
 function goHome(){
     //takes the user to the home page
     window.location.href = "./index.html";
@@ -75,7 +76,8 @@ function clearHighScores(){
     //removes all highscore lis
     document.querySelector(".high-score-li").remove();
 }
-
+//save the high score
+saveHighScore();
 //put timeLeft value in finalScoreMessage and timer
 timeDisplayed.textContent = timeLeft;
 finalScoreDisplayed.textContent = timeLeft;
