@@ -14,7 +14,7 @@ Note: if the answer is incorrect, it will display a message and take off 5 secon
 6. You can either play again, by clicking on the Go Back button, or you can clear the highscores board by clicking on the Clear Highscores button.
 
 ## Credits
-Code created by anicrob with architecture assistance from a tutor at UNC. 
+Code created by anicrob with architecture assistance from a tutor and a TA at UNC. 
 ## Screenshots
 Start page
 ![Screenshot](./Assets/Images/start-game-page.png)
