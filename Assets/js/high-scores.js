@@ -22,11 +22,6 @@ var highScoresPage = [viewHighscores, listHighScores, goBackBtn, clearHsBtn];
 var timeLeft = localStorage.getItem("time-left")
 
 
-//length + 1
-//go to high scores page
-//loop through what is in highscores array
-
-//display high scores only
 function goToHighScores(event){
     event.preventDefault();
     var initials = inputTextArea.value.trim();
@@ -36,7 +31,7 @@ function goToHighScores(event){
             initials: initials,
             score: timeLeft
         }
-        //already an array - gets what is in local storage or sets it to an empty array
+        //already an array - gets what is in local storage already (from past games) or sets it to an empty array
         var highscores = JSON.parse(localStorage.getItem('highscores')) || [];
         //pushing the template into the existing array (highscores), so we are adding the new finalScore to the highscores array
         highscores.push(finalScore);
@@ -57,19 +52,21 @@ function goToHighScores(event){
             highScoresPage[i].classList.add("visible");
             highScoresPage[i].classList.remove("hidden");
         }         
-        for (var i=0; i<highscores[i].length;i++){
+        for (var i=0; i<highscores.length;i++){
             //creates the li element
             var newListItem = document.createElement("li");
             console.log(newListItem);
             //adds the high score text to the li
-            newListItem.textContent = highscores[i].length + ". " + highscores.initials[i] + " " + "-" + " " + highscores.score[i];
+            newListItem.textContent = (i + 1) + ". " + highscores[i].initials + " " + "-" + " " + highscores[i].score;
             //give the newly created li a class of high-score-li so it can be styled in the CSS
             newListItem.setAttribute("class", "high-score-li")
             //add new element to the DOM
             listHighScores.appendChild(newListItem);
         }
 
-    } 
+    } else {
+        alert("You need to type in initials before submitting!");
+    }
 }
 function goHome(){
     //takes the user to the home page
@@ -77,7 +74,15 @@ function goHome(){
 }
 function clearHighScores(){
     //removes all highscore lis
-    document.querySelector(".high-score-li").remove();
+    //makes the elements an array
+    var allHighScoreLines = Array.from(document.querySelectorAll(".high-score-li"));
+    console.log(allHighScoreLines);
+    //now that it's an array, remove each element in the array
+    for (var i=0; i<allHighScoreLines.length; i++){
+        allHighScoreLines[i].remove();
+    }
+    //also need to clear localStorage 
+    localStorage.clear();
 }
 
 //put timeLeft value in finalScoreMessage and timer
