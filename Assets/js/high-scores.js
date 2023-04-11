@@ -45,7 +45,6 @@ function goToHighScores(event){
         for (var i=0; i<finishedGamePage.length; i++){
             finishedGamePage[i].classList.add("hidden");
             finishedGamePage[i].classList.remove("visible", "timer", "time", "final-score-message", "submit-final-score", "initials", "submitBtn");
-
         }
         //this makes the high scores page visible
         for (var i=0; i<highScoresPage.length; i++){
@@ -63,7 +62,6 @@ function goToHighScores(event){
             //add new element to the DOM
             listHighScores.appendChild(newListItem);
         }
-
     } else {
         alert("You need to type in initials before submitting!");
     }
