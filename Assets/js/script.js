@@ -72,7 +72,7 @@ function changeQuestion (direction){
      )
      //if no time or questions are left end the quiz
      {
-        setTimeout(finishedQuiz(), 3000);
+        finishedQuiz()
      //else go to the next question/option based on the calculated index (current index + input of direction)
     } else {
         index = index + direction;
@@ -83,12 +83,12 @@ function changeQuestion (direction){
         option4.textContent = questions[index].options[3];
     }
 }
-//see if there's a way to delay this a little bit like 2 seconds
 //this function ends the quiz
 function finishedQuiz() {
     //it first adds the time left to local storage and goes to the high scores page
     localStorage.setItem("time-left", JSON.stringify(timeLeft));
-    window.location.href = "./high-scores.html"
+    //delays the location change by half a second to leave some time to see feedback for question 5
+    setTimeout(function() {window.location.href = "./high-scores.html"},500);
 }
 //functions triggered by buttons
 
@@ -128,7 +128,7 @@ function questionEvalution(event) {
         //show feedback
         feedbackMessage.classList.add("visible");
         feedbackMessage.classList.remove("hidden");
-        feedbackMessage.textContent = "Wrong!"
+        feedbackMessage.textContent = "Wrong! ❌"
         //hide feedback after 2 seconds
         setTimeout(function(){
             feedbackMessage.classList.add("hidden");
@@ -143,7 +143,7 @@ function questionEvalution(event) {
         //show feedback 
         feedbackMessage.classList.add("visible");
         feedbackMessage.classList.remove("hidden");
-        feedbackMessage.textContent = "Correct!"
+        feedbackMessage.textContent = "Correct! ✅"
         //hide feedback after 2 seconds
         setTimeout(function(){
             feedbackMessage.classList.add("hidden");
